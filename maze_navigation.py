@@ -1,15 +1,18 @@
-# https://towardsdatascience.com/finding-driving-lane-line-live-with-opencv-f17c266f15db
-# Maze navigation using canny edge detection and houghlinesP transform
+# Original inspiration from https://towardsdatascience.com/finding-driving-lane-line-live-with-opencv-f17c266f15db
+# Maze navigation using Canny Edge Detection and HoughlinesP Transform
+
+# import the neccessary packages
 import cv2
 import numpy as np
 
+# load image
 image = cv2.imread("/home/pi/opencv/maze_test_images/maze1.png")
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 kernel_size = 5
 blur_gray = cv2.GaussianBlur(gray,(kernel_size,kernel_size),0)
+# apply edge detection
 low_threshold = 50
 high_threshold = 150
-
 edges = cv2.Canny(blur_gray, low_threshold, high_threshold)
 
 # create a mask of the edges image using cv2.filpoly()
@@ -23,10 +26,6 @@ vertices = np.array([[(0,imshape[0]),(100, 420), (1590, 420),(imshape[1],imshape
 
 cv2.fillPoly(mask, vertices, ignore_mask_color)
 masked_edges = cv2.bitwise_and(edges, mask)
-
-# mybasic ROI bounded by a blue rectangle
-
-#ROI = cv2.rectangle(image,(0,420),(1689,839),(0,255,0),3)
 
 # define the Hough Transform parameters
 rho = 2 # distance resolution in pixels of the Hough grid
