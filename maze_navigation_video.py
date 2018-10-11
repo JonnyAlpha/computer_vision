@@ -1,6 +1,6 @@
 # Original ideas from https://towardsdatascience.com/finding-driving-lane-line-live-with-opencv-f17c266f15db
 # Maze navigation using canny edge detection and houghlinesP transform
-
+# v1.0
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
